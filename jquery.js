@@ -25,21 +25,39 @@
                 alert("enter a proper email!");
             } else {
                 dic[user_name] = password;
+                ShowSection('login_div');
                 //should transform to the login screen.
             }
             });
         });
 
+    $('#ex1').slider({
+        formatter: function(value) {
+            return 'Current value: ' + value;
+        }
+    });
+
         $(document).ready(function() {
             $("#login").click(function() {
                 var user_name = $("#login_user_name").val();
+                lblUser.value = user_name;
                 var password = $("#login_password").val();
                 if (dic[user_name]!= password){
-                    alert("not the right password")
+                    alert("not the right password");
                 } else {
-                   alert("yay")
-                   Start(); // should trasfrom to the game screen
+                   alert("yay");
+                   ShowSection('choose_div');
                 }
+            });
+        });
+
+        $(document).ready(function() {
+            $("#Play").click(function() {
+                var ballsCounter = $("#myRange").val();   
+                var timeToPlay = $("#TimeLimit").val();
+                var enemyCounter = $("#selectMonsters").val();
+                ShowSection('canvas_div');
+                Start(ballsCounter, timeToPlay, enemyCounter); // should trasfrom to the game screen
             });
         });
 
