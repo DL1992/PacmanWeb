@@ -419,19 +419,19 @@ function UpdatePosition() {
         }
     }
     if(board[pacman_shape.i][pacman_shape.j]==1){
-        var audio = new Audio('pacman_chomp.wav');
+        var audio = new Audio('pacman_bip.mp3');
         audio.play();
         food_board[pacman_shape.i][pacman_shape.j]=0;
         food_remain--;
         score+=5;
     } else if(board[pacman_shape.i][pacman_shape.j]==8){
-        var audio = new Audio('pacman_chomp.wav');
+        var audio = new Audio('pacman_bip.mp3.wav');
         audio.play();
         food_board[pacman_shape.i][pacman_shape.j]=0;
         food_remain--;
         score +=25;
     } else if(board[pacman_shape.i][pacman_shape.j]==9){
-        var audio = new Audio('pacman_chomp.wav');
+        var audio = new Audio('pacman_bip.mp3.wav');
         audio.play();
         food_board[pacman_shape.i][pacman_shape.j]=0;
         food_remain--;
