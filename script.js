@@ -101,12 +101,12 @@ function Start(ballsCounter, timeToPlay, enemyCounter) {
 }
 
 function setBoards(){
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 13; i++) {
         board[i] = new Array();
         food_board[i] = new Array();
     }
-    for (var i = 0; i < 10; i++) {
-        for (var j = 0; j < 10; j++) {
+    for (var i = 0; i < 13; i++) {
+        for (var j = 0; j < 13; j++) {
             board[i][j]=0;
             food_board[i][j] = 0;
         }
@@ -193,28 +193,28 @@ function setGhosts(){
             red_ghost_shape.i = 0;
             red_ghost_shape.j = 0;
             blue_ghost_shape.i = 0;
-            blue_ghost_shape.j = 9;
+            blue_ghost_shape.j = 12;
             board[0][0] = 5;
-            board[0][9] = 6;
+            board[0][12] = 6;
             break;
         case 3:
             red_ghost_shape.i = 0;
             red_ghost_shape.j = 0;
             blue_ghost_shape.i = 0;
-            blue_ghost_shape.j = 9;
-            green_ghost_shape.i = 9;
-            green_ghost_shape.j = 9;
+            blue_ghost_shape.j = 12;
+            green_ghost_shape.i = 12;
+            green_ghost_shape.j = 12;
             board[0][0] = 5;
-            board[0][9] = 6;
-            board[9][9] = 7;
+            board[0][12] = 6;
+            board[12][12] = 7;
             break;
     }
 }
 
 function setFood(board,food_board,food_remain,red_food,blue_food,green_food){
-    cherry_shape.i = 9;
+    cherry_shape.i = 12;
     cherry_shape.j = 0;
-    board[9][0] = 10 // 10 is cherry;
+    board[12][0] = 10 // 10 is cherry;
     while(food_remain>0){
         var emptyCell = findRandomEmptyCell(board);
         if(red_food>0){
@@ -240,12 +240,12 @@ function setFood(board,food_board,food_remain,red_food,blue_food,green_food){
 
 
  function findRandomEmptyCell(board){
-     var i = Math.floor((Math.random() * 9) + 1);
-     var j = Math.floor((Math.random() * 9) + 1);
-    while(board[i][j]!=0 || (i==0 && j==0) || (i==9 && j==9) || (i==0 && j==9) || (i==9 && j==0))
+     var i = Math.floor((Math.random() * 12) + 1);
+     var j = Math.floor((Math.random() * 12) + 1);
+    while(board[i][j]!=0 || (i==0 && j==0) || (i==12 && j==12) || (i==0 && j==12) || (i==12 && j==0))
     {
-         i = Math.floor((Math.random() * 9) + 1);
-         j = Math.floor((Math.random() * 9) + 1);
+         i = Math.floor((Math.random() * 12) + 1);
+         j = Math.floor((Math.random() * 12) + 1);
     }
     return [i,j];             
  }
@@ -319,8 +319,8 @@ function Draw() {
     lblLives.value = pacman_remain;
     lblScore.value = score;
     lblTime.value = (timeToPlaySetting-time_elapsed).toFixed(2);
-    for (var i = 0; i < 10; i++) {
-        for (var j = 0; j < 10; j++) {
+    for (var i = 0; i < 13; i++) {
+        for (var j = 0; j < 13; j++) {
             var center = new Object();
             center.x = i * 60 + 30;
             center.y = j * 60 + 30;
@@ -354,7 +354,7 @@ function Draw() {
             } else if (board[i][j] == 4) { //4 in the 2d array is wall
                 context.beginPath();
                 context.rect(center.x-30, center.y-30, 60, 60);
-                context.fillStyle = "grey"; //color 
+                context.fillStyle = "grey"; //color
                 context.fill();
             } else if (board[i][j] == 5 || board[i][j] == 6 || board[i][j] == 7) { //5.6.7 in the 2d array are ghosts
                 img = new Image();
@@ -404,7 +404,7 @@ function UpdatePosition() {
     }
     if(x==2)
     {
-        if(pacman_shape.j<9 && board[pacman_shape.i][pacman_shape.j+1]!=4)
+        if(pacman_shape.j<12 && board[pacman_shape.i][pacman_shape.j+1]!=4)
         {
             pacman_shape.j++;
         }
@@ -418,7 +418,7 @@ function UpdatePosition() {
     }
     if(x==4)
     {
-        if(pacman_shape.i<9 && board[pacman_shape.i+1][pacman_shape.j]!=4)
+        if(pacman_shape.i<12 && board[pacman_shape.i+1][pacman_shape.j]!=4)
         {
             pacman_shape.i++;
         }
@@ -453,8 +453,8 @@ function UpdatePosition() {
         board[pacman_shape.i][pacman_shape.j]=0;
         timeToPlaySetting+=5;
     }
-    for(var i= 0; i < 10 ; i++){
-        for(var j=0; j < 10; j++){
+    for(var i= 0; i < 13 ; i++){
+        for(var j=0; j < 13; j++){
             if(food_board[i][j]!=0){
                 board[i][j] = food_board[i][j];
             }
@@ -524,7 +524,7 @@ function updateCherryPosition(){
     }
     if(move==2)
     {
-        if(cherry_shape.j<9 && board[cherry_shape.i][cherry_shape.j+1]!=4)
+        if(cherry_shape.j<12 && board[cherry_shape.i][cherry_shape.j+1]!=4)
         {
             cherry_shape.j++;
         }
@@ -538,7 +538,7 @@ function updateCherryPosition(){
     }
     if(move==4)
     {
-        if(cherry_shape.i<9 && board[cherry_shape.i+1][cherry_shape.j]!=4)
+        if(cherry_shape.i<12 && board[cherry_shape.i+1][cherry_shape.j]!=4)
         {
             cherry_shape.i++;
         }
@@ -670,7 +670,7 @@ function tryMoveUp(ghost_shape){
 }
 
 function tryMoveDown(ghost_shape){
-    if(9>ghost_shape.j && board[ghost_shape.i][ghost_shape.j+1]!=4){
+    if(12>ghost_shape.j && board[ghost_shape.i][ghost_shape.j+1]!=4){
         ghost_shape.j++;
         return true;
     }
@@ -686,7 +686,7 @@ function tryMoveLeft(ghost_shape){
 }
 
 function tryMoveRight(ghost_shape){
-    if(9>ghost_shape.i && board[ghost_shape.i+1][ghost_shape.j]!=4){
+    if(12>ghost_shape.i && board[ghost_shape.i+1][ghost_shape.j]!=4){
         ghost_shape.i++;
         return true;
     }
