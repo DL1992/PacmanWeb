@@ -461,7 +461,7 @@ function UpdatePosition() {
     {
         pac_color="green";
     }
-    if(timeToPlaySetting-time_elapsed == 0){
+    if(timeToPlaySetting-time_elapsed <= 0){
         window.clearInterval(interval);
         if(score < 150 ){
             window.alert("You cant do better scrub " + score);
