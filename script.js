@@ -419,19 +419,27 @@ function UpdatePosition() {
         }
     }
     if(board[pacman_shape.i][pacman_shape.j]==1){
+        var audio = new Audio('pacman_chomp.wav');
+        audio.play();
         food_board[pacman_shape.i][pacman_shape.j]=0;
         food_remain--;
         score+=5;
     } else if(board[pacman_shape.i][pacman_shape.j]==8){
+        var audio = new Audio('pacman_chomp.wav');
+        audio.play();
         food_board[pacman_shape.i][pacman_shape.j]=0;
         food_remain--;
         score +=25;
     } else if(board[pacman_shape.i][pacman_shape.j]==9){
+        var audio = new Audio('pacman_chomp.wav');
+        audio.play();
         food_board[pacman_shape.i][pacman_shape.j]=0;
         food_remain--;
         score +=15;
     }
     else if(board[pacman_shape.i][pacman_shape.j]==10){
+        var audio = new Audio('pacman_eatfruit.wav');
+        audio.play();
         cherry_remain--;
         // alert('cherry');
         score +=50;
@@ -531,6 +539,8 @@ function updateCherryPosition(){
 }
 
 function ghoseCollision(board){
+    var audio = new Audio('pacman_death.wav');
+    audio.play();
     if(num_ghost == 1)
     {
         board[red_ghost_shape.i][red_ghost_shape.j]=0;
