@@ -39,13 +39,22 @@ function ShowSection(id)
     choose_div.style.display="none";
     var canvas_div = document.getElementById('canvas_div');
     canvas_div.style.display="none";
-    var canvas_div = document.getElementById('canvas_div1');
+    var lose_div = document.getElementById('lose_div');
+    lose_div.style.display="none";
+    var win_div = document.getElementById('win_div');
+    win_div.style.display="none";
+    var score_div = document.getElementById('score_div');
+    score_div.style.display="none";
+    var canvas_div = document.getElementById('canvas_div');
+    canvas_div.hidden = true;
+    var canvas_div1 = document.getElementById('canvas_div1');
     canvas_div1.style.visibility="hidden";
 
     //show only one section
     var selected = document.getElementById(id);
     if(id == 'canvas_div')
     {
+        selected.hidden = false;
         var selected2 = document.getElementById(id + "1");
         selected2.style.visibility="visible";
     }
@@ -75,7 +84,9 @@ function Start(ballsCounter, timeToPlay, enemyCounter) {
     setFood(board,food_board,food_remain,red_food,blue_food,green_food);
     keysDown = {};
     addEventListener("keydown", function (e) {
-        e.preventDefault();
+        if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+            e.preventDefault();
+        }
         keysDown[e.keyCode] = true;
     }, false);
     addEventListener("keyup", function (e) {
@@ -464,19 +475,20 @@ function UpdatePosition() {
     if(timeToPlaySetting-time_elapsed <= 0){
         window.clearInterval(interval);
         if(score < 150 ){
-            window.alert("You cant do better scrub " + score);
+            h3score.innerText  = "You can do better scrub, your score was just: " + score + "points";
         }
         else{
-            window.alert("We have a winner!!");
+            h3score.innerText  = "We have a winner!, your score was: " + score + "points";
         }
+        ShowSection('score_div');
     }
     if(pacman_remain==0 )
     {
         window.clearInterval(interval);
-        window.alert("Game failed");
+        ShowSection('lose_div');
     }else if(food_remain==0){
         window.clearInterval(interval);
-        window.alert("you won!");
+        ShowSection("win_div");
     }
     else
     {
