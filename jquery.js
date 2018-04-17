@@ -45,8 +45,7 @@
                 if (dic[user_name]!= password){
                     alert("not the right password");
                 } else {
-                   alert("yay");
-                   ShowSection('choose_div');
+                   ShowSection('instructions_div');
                 }
             });
         });

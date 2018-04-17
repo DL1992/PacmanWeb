@@ -43,6 +43,8 @@ function ShowSection(id)
     lose_div.style.display="none";
     var win_div = document.getElementById('win_div');
     win_div.style.display="none";
+    var instructions_div = document.getElementById('instructions_div');
+    instructions_div.style.display="none";
     var score_div = document.getElementById('score_div');
     score_div.style.display="none";
     var canvas_div = document.getElementById('canvas_div');
@@ -59,11 +61,13 @@ function ShowSection(id)
         selected2.style.visibility="visible";
     }
     selected.style.display="block";
+    background_music.pause();
 }
 
 
 
 function Start(ballsCounter, timeToPlay, enemyCounter) {
+    background_music.play();
     food_setting = parseInt(ballsCounter);
     timeToPlaySetting = parseInt(timeToPlay);
     num_ghost = parseInt(enemyCounter);
@@ -365,7 +369,7 @@ function Draw() {
                 cherry_img = new Image();
                 cherry_img.src = 'Cherry.png';
                 context.drawImage(cherry_img,center.x-30,center.y-30,45,45);
-            } else if (board[i][j] ==11) { // 10 is cherry
+            } else if (board[i][j] ==11) { // 11 is cherry
                 clock_img = new Image();
                 clock_img.src = 'clock.png';
                 context.drawImage(clock_img,center.x-30,center.y-30,45,45);
@@ -425,13 +429,13 @@ function UpdatePosition() {
         food_remain--;
         score+=5;
     } else if(board[pacman_shape.i][pacman_shape.j]==8){
-        var audio = new Audio('pacman_bip.mp3.wav');
+        var audio = new Audio('pacman_bip.mp3');
         audio.play();
         food_board[pacman_shape.i][pacman_shape.j]=0;
         food_remain--;
         score +=25;
     } else if(board[pacman_shape.i][pacman_shape.j]==9){
-        var audio = new Audio('pacman_bip.mp3.wav');
+        var audio = new Audio('pacman_bip.mp3');
         audio.play();
         food_board[pacman_shape.i][pacman_shape.j]=0;
         food_remain--;
@@ -481,20 +485,23 @@ function UpdatePosition() {
         pac_color="green";
     }
     if(timeToPlaySetting-time_elapsed <= 0){
+        background_music.pause();
         window.clearInterval(interval);
         if(score < 150 ){
-            h3score.innerText  = "You can do better scrub, your score was just: " + score + "points";
+            h3score.innerText  = "You can do better scrub\n your score was just: " + score + "points";
         }
         else{
-            h3score.innerText  = "We have a winner!, your score was: " + score + "points";
+            h3score.innerText  = "We have a winner!\n your score was: " + score + "points";
         }
         ShowSection('score_div');
     }
     if(pacman_remain==0 )
     {
+        background_music.pause();
         window.clearInterval(interval);
         ShowSection('lose_div');
     }else if(food_remain==0){
+        background_music.pause();
         window.clearInterval(interval);
         ShowSection("win_div");
     }
