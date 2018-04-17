@@ -549,67 +549,67 @@ function updateGhostPosition(ghost_shape){
     board[ghost_shape.i][ghost_shape.j]=0;
     switch (direction(ghost_shape)){
         case 1:
-            if(!tryMoveDown(ghost_shape)){
-                tryMoveRight(ghost_shape)
+            if(!tryMoveUp(ghost_shape)){
+                tryMoveLeft(ghost_shape)
             }
             break;
         case 2:
-            if(!tryMoveUp(ghost_shape)){
-                tryMoveRight(ghost_shape)
-            }
-            break;
-        case 3:
-            tryMoveRight(ghost_shape)
-            break;
-        case 4:
             if(!tryMoveDown(ghost_shape)){
                 tryMoveLeft(ghost_shape)
             }
             break;
-        case 5:
+        case 3:
+            tryMoveLeft(ghost_shape)
+            break;
+        case 4:
             if(!tryMoveUp(ghost_shape)){
-                tryMoveLeft(ghost_shape)
+                tryMoveRight(ghost_shape)
+            }
+            break;
+        case 5:
+            if(!tryMoveDown(ghost_shape)){
+                tryMoveRight(ghost_shape)
             }
             break;
         case 6:
-            tryMoveLeft(ghost_shape)
+            tryMoveRight(ghost_shape)
             break;
         case 7:
-            tryMoveDown(ghost_shape)
+            tryMoveUp(ghost_shape)
             break;
         case 8:
-            tryMoveUp(ghost_shape)
+            tryMoveDown(ghost_shape)
             break;
     }
 }
 
 function tryMoveUp(ghost_shape){
-    if(0<ghost_shape.i && board[ghost_shape.i-1][ghost_shape.j]!=4){
-        ghost_shape.i--;
-        return true;
-    }
-    return false;
-}
-
-function tryMoveDown(ghost_shape){
-    if(9>ghost_shape.i && board[ghost_shape.i+1][ghost_shape.j]!=4){
-        ghost_shape.i++;
-        return true;
-    }
-    return false;
-}
-
-function tryMoveLeft(ghost_shape){
-    if( 0<ghost_shape.ghost_shapej && board[ghost_shape.i][ghost_shape.j-1]!=4){
+    if(0<ghost_shape.j && board[ghost_shape.i][ghost_shape.j-1]!=4){
         ghost_shape.j--;
         return true;
     }
     return false;
 }
 
-function tryMoveRight(ghost_shape){
+function tryMoveDown(ghost_shape){
     if(9>ghost_shape.j && board[ghost_shape.i][ghost_shape.j+1]!=4){
         ghost_shape.j++;
+        return true;
+    }
+    return false;
+}
+
+function tryMoveLeft(ghost_shape){
+    if( 0<ghost_shape.i && board[ghost_shape.i-1][ghost_shape.j]!=4){
+        ghost_shape.i--;
+        return true;
+    }
+    return false;
+}
+
+function tryMoveRight(ghost_shape){
+    if(9>ghost_shape.i && board[ghost_shape.i+1][ghost_shape.j]!=4){
+        ghost_shape.i++;
         return true;
     }
     return false;
@@ -638,7 +638,7 @@ function direction(ghost_shape){
     } else if(ghost_shape.j < pacman_shape.j){
         il = 8;
     }
-    // window.alert(il);
+    //window.alert("i: " + ghost_shape.i + ", j: " + ghost_shape.j + ", modecode:" + il);
     return il;
 }
 
