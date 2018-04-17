@@ -55,8 +55,13 @@
                 var ballsCounter = $("#myRange").val();   
                 var timeToPlay = $("#TimeLimit").val();
                 var enemyCounter = $("#selectMonsters").val();
-                ShowSection('canvas_div');
-                Start(ballsCounter, timeToPlay, enemyCounter); // should trasfrom to the game screen
+                if(parseInt(timeToPlay) < 60){
+                    alert("Please pick a time of at least 60");
+                }
+                else {
+                    ShowSection('canvas_div');
+                    Start(ballsCounter, timeToPlay, enemyCounter); // should trasfrom to the game screen
+                }
             });
         });
 
