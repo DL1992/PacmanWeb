@@ -19,7 +19,7 @@ var food_setting;
 var interval;
 var key_pressed=0;
 var food_remain;
-var ghost_draw_count=0;
+var draw_count=0;
 
 function PageLoaded()
 {
@@ -101,7 +101,7 @@ function setBoards(){
 }
 
 function setWalls(){
-    var walls = 2;//Math.floor((Math.random() * 4) + 1);
+    var walls = /*2;*/ Math.floor((Math.random() * 4) + 1);
     switch (walls){
         case 1:
             buildWalls1();
@@ -354,6 +354,10 @@ function Draw() {
                 cherry_img = new Image();
                 cherry_img.src = 'Cherry.png';
                 context.drawImage(cherry_img,center.x-30,center.y-30,45,45);
+            } else if (board[i][j] ==11) { // 10 is cherry
+                clock_img = new Image();
+                clock_img.src = 'clock.png';
+                context.drawImage(clock_img,center.x-30,center.y-30,45,45);
             }
         }
     }  
@@ -362,14 +366,15 @@ function Draw() {
 
 function UpdatePosition() {
     board[pacman_shape.i][pacman_shape.j]=0;
-    if(ghost_draw_count==2){
+    if(draw_count % 3 == 0){
         updateGhostsPosition();
-        ghost_draw_count=0;
     }
-    else{
-        ghost_draw_count++;
+    if (draw_count== timeToPlaySetting*0.35*2 || draw_count == timeToPlaySetting*0.75*2.5){
+        var clock = findRandomEmptyCell(board);
+        board[clock[0]][clock[1]] = 11;
     }
-    if (cherry_remain==1){
+    draw_count++;
+    if (cherry_remain==1 && (draw_count % 2==0)){
         updateCherryPosition();
         board[cherry_shape.i][cherry_shape.j] = 10;
     }
@@ -420,6 +425,9 @@ function UpdatePosition() {
         // alert('cherry');
         score +=50;
         
+    }else if(board[pacman_shape.i][pacman_shape.j]==11){
+        board[pacman_shape.i][pacman_shape.j]=0;
+        timeToPlaySetting+=5;
     }
     for(var i= 0; i < 10 ; i++){
         for(var j=0; j < 10; j++){
@@ -550,35 +558,75 @@ function updateGhostPosition(ghost_shape){
     switch (direction(ghost_shape)){
         case 1:
             if(!tryMoveUp(ghost_shape)){
-                tryMoveLeft(ghost_shape)
+                if(!tryMoveLeft(ghost_shape)){
+                    if(!tryMoveRight(ghost_shape)){
+                        tryMoveDown(ghost_shape);
+                    }
+                }
             }
             break;
         case 2:
             if(!tryMoveDown(ghost_shape)){
-                tryMoveLeft(ghost_shape)
+                if(!tryMoveLeft(ghost_shape)){
+                    if(!tryMoveUp(ghost_shape)){
+                        tryMoveRight(ghost_shape)
+                    }
+                }
             }
             break;
         case 3:
-            tryMoveLeft(ghost_shape)
+           if (!tryMoveLeft(ghost_shape)){
+               if(!tryMoveUp(ghost_shape)){
+                   if(!tryMoveDown(ghost_shape)){
+                       tryMoveRight(ghost_shape);
+                   }
+               }
+           }
             break;
         case 4:
             if(!tryMoveUp(ghost_shape)){
-                tryMoveRight(ghost_shape)
+               if(!tryMoveRight(ghost_shape)){
+                   if(!tryMoveDown(ghost_shape)){
+                       tryMoveRight(ghost_shape);
+                   }
+               }
             }
             break;
         case 5:
             if(!tryMoveDown(ghost_shape)){
-                tryMoveRight(ghost_shape)
+                if(!tryMoveRight(ghost_shape)){
+                    if(!tryMoveUp(ghost_shape)){
+                        tryMoveLeft(ghost_shape);
+                    }
+                }
             }
             break;
         case 6:
-            tryMoveRight(ghost_shape)
+            if(!tryMoveRight(ghost_shape)){
+                if(!tryMoveDown(ghost_shape)){
+                    if(!tryMoveUp(ghost_shape)){
+                        tryMoveLeft(ghost_shape);
+                    }
+                }
+            }
             break;
         case 7:
-            tryMoveUp(ghost_shape)
+            if(!tryMoveUp(ghost_shape)){
+                if(!tryMoveRight(ghost_shape)){
+                    if(!tryMoveDown(ghost_shape)){
+                        tryMoveLeft(ghost_shape);
+                    }
+                }
+            }
             break;
         case 8:
-            tryMoveDown(ghost_shape)
+            if(!tryMoveDown(ghost_shape)){
+                if(!tryMoveRight(ghost_shape)){
+                    if(!tryMoveUp(ghost_shape)){
+                        tryMoveLeft(ghost_shape);
+                    }
+                }
+            }
             break;
     }
 }
@@ -638,7 +686,7 @@ function direction(ghost_shape){
     } else if(ghost_shape.j < pacman_shape.j){
         il = 8;
     }
-    //window.alert("i: " + ghost_shape.i + ", j: " + ghost_shape.j + ", modecode:" + il);
+    // window.alert(il);
     return il;
 }
 
