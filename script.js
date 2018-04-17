@@ -71,6 +71,7 @@ function Start(ballsCounter, timeToPlay, enemyCounter) {
     food_setting = parseInt(ballsCounter);
     timeToPlaySetting = parseInt(timeToPlay);
     num_ghost = parseInt(enemyCounter);
+    timeToPlaySetting = (isNaN(timeToPlaySetting) ? 60 : timeToPlaySetting);
     canvas = document.getElementById('canvas');
     context = canvas.getContext("2d");
     board = new Array();
@@ -488,10 +489,10 @@ function UpdatePosition() {
         background_music.pause();
         window.clearInterval(interval);
         if(score < 150 ){
-            h3score.innerText  = "You can do better scrub\n your score was just: " + score + "points";
+            h3score.innerText  = "You can do better scrub\n\n your score was just: " + score + " points";
         }
         else{
-            h3score.innerText  = "We have a winner!\n your score was: " + score + "points";
+            h3score.innerText  = "We have a winner!\n\n your score was: " + score + " points";
         }
         ShowSection('score_div');
     }
