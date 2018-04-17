@@ -272,42 +272,42 @@ function GetKeyPressed() {
 function drawPacman(center){
     if(key_pressed==3){
         context.beginPath();
-        context.arc(center.x, center.y, 30, 1.15 * Math.PI, 0.85 * Math.PI); // half circle
+        context.arc(center.x, center.y, 30*10/13, 1.15 * Math.PI, 0.85 * Math.PI); // half circle
         context.lineTo(center.x, center.y);
         context.fillStyle = pac_color; //color 
         context.fill();
         context.beginPath();
-        context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+        context.arc(center.x + 5*10/13, center.y - 15*10/13, 5*10/13, 0, 2 * Math.PI); // circle
         context.fillStyle = "black"; //color 
         context.fill();
     }else if(key_pressed==4){
         context.beginPath();
-        context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+        context.arc(center.x, center.y, 30*10/13, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
         context.lineTo(center.x, center.y);
         context.fillStyle = pac_color; //color 
         context.fill();
         context.beginPath();
-        context.arc(center.x - 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+        context.arc(center.x - 5*10/13, center.y - 15*10/13, 5*10/13, 0, 2 * Math.PI); // circle
         context.fillStyle = "black"; //color 
         context.fill();
     }else if(key_pressed==2){
         context.beginPath();
-        context.arc(center.x, center.y, 30, 0.65 * Math.PI, 0.35 * Math.PI); // half circle
+        context.arc(center.x, center.y, 30*10/13, 0.65 * Math.PI, 0.35 * Math.PI); // half circle
         context.lineTo(center.x, center.y);
         context.fillStyle = pac_color; //color 
         context.fill();
         context.beginPath();
-        context.arc(center.x -15 , center.y - 5, 5, 0, 2 * Math.PI); // circle
+        context.arc(center.x -15*10/13 , center.y - 5*10/13, 5*10/13, 0, 2 * Math.PI); // circle
         context.fillStyle = "black"; //color 
         context.fill();
     }else if(key_pressed==1){
         context.beginPath();
-        context.arc(center.x, center.y, 30, 1.65 * Math.PI, 1.35 * Math.PI); // half circle
+        context.arc(center.x, center.y, 30*10/13, 1.65 * Math.PI, 1.35 * Math.PI); // half circle
         context.lineTo(center.x, center.y);
         context.fillStyle = pac_color; //color 
         context.fill();
         context.beginPath();
-        context.arc(center.x -15, center.y - 5, 5, 0, 2 * Math.PI); // circle
+        context.arc(center.x -15*10/13, center.y - 5*10/13, 5*10/13, 0, 2 * Math.PI); // circle
         context.fillStyle = "black"; //color 
         context.fill();
     }
@@ -322,17 +322,17 @@ function Draw() {
     for (var i = 0; i < 13; i++) {
         for (var j = 0; j < 13; j++) {
             var center = new Object();
-            center.x = i * 60 + 30;
-            center.y = j * 60 + 30;
+            center.x = (i * 60 + 30)*10/13;
+            center.y = (j * 60 + 30)*10/13;
             if (board[i][j] == 2) {
                 if(key_pressed==0){ //2 in the 2d array is pacman
                     context.beginPath();
-                    context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+                    context.arc(center.x, center.y, 30*10/13, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
                     context.lineTo(center.x, center.y);
                     context.fillStyle = pac_color; //color 
                     context.fill();
                     context.beginPath();
-                    context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+                    context.arc(center.x + 5*10/13, center.y - 15*10/13, 5*10/13, 0, 2 * Math.PI); // circle
                     context.fillStyle = "black"; //color 
                     context.fill();
                 } else{
@@ -342,7 +342,7 @@ function Draw() {
                
             } else if (board[i][j] == 1 || board[i][j] == 8 || board[i][j] == 9) { //1 in the 2d array is food
                 context.beginPath();
-                context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+                context.arc(center.x, center.y, 15*10/13, 0, 2 * Math.PI); // circle
                 if (board[i][j] == 1){
                     context.fillStyle = "red"; //color 
                 } else if (board[i][j] == 8){
@@ -353,9 +353,10 @@ function Draw() {
                 context.fill();
             } else if (board[i][j] == 4) { //4 in the 2d array is wall
                 context.beginPath();
-                context.rect(center.x-30, center.y-30, 60, 60);
-                context.fillStyle = "grey"; //color
-                context.fill();
+                context.rect(center.x-30*10/13, center.y-30*10/13, 60*10/13, 60*10/13);
+                context.lineWidth = 5;
+                context.strokeStyle="blue";
+                context.stroke();
             } else if (board[i][j] == 5 || board[i][j] == 6 || board[i][j] == 7) { //5.6.7 in the 2d array are ghosts
                 img = new Image();
                 if(board[i][j] == 5){
@@ -365,15 +366,15 @@ function Draw() {
                 } else if( board[i][j] == 7 ){
                     img.src = 'greenGhost.png';
                 }
-                context.drawImage(img,center.x-30,center.y-30,60,60);
+                context.drawImage(img,center.x-30*10/13,center.y-30*10/13,60*10/13,60*10/13);
             } else if (board[i][j] ==10) { // 10 is cherry
                 cherry_img = new Image();
                 cherry_img.src = 'Cherry.png';
-                context.drawImage(cherry_img,center.x-30,center.y-30,45,45);
+                context.drawImage(cherry_img,center.x-30*10/13,center.y-30*10/13,45*10/13,45*10/13);
             } else if (board[i][j] ==11) { // 11 is cherry
                 clock_img = new Image();
                 clock_img.src = 'clock.png';
-                context.drawImage(clock_img,center.x-30,center.y-30,45,45);
+                context.drawImage(clock_img,center.x-30*10/13,center.y-30*10/13,45*10/13,45*10/13);
             }
         }
     }  
