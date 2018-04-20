@@ -739,3 +739,7 @@ function showAbout(){
         }
     }
 }
+
+function zoom() {
+        document.body.style.zoom = "100%"
+}
