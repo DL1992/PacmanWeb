@@ -117,7 +117,7 @@ function setBoards(){
 }
 
 function setWalls(){
-    var walls = /*2;*/ Math.floor((Math.random() * 4) + 1);
+    var walls = /*3;*/ Math.floor((Math.random() * 4) + 1);
     switch (walls){
         case 1:
             buildWalls1();
@@ -135,37 +135,44 @@ function setWalls(){
 }
 
 function buildWalls1(){
-    board[0][4] = 4; board[0][5] =4;
-    board[9][4] = 4; board[9][5] =4; 
-    board[1][1] =4; board[1][2] =4; board[1][7] =4; board[1][8] =4;
-    board[2][1] =4; board[2][2] =4; board[2][7] =4; board[2][8] =4;
-    board[7][1] =4; board[7][2] =4; board[7][7] =4; board[7][8] =4;
-    board[8][1] =4; board[8][2] =4; board[8][7] =4; board[8][8] =4;
-    board[4][0] =4; board[4][4] =4; board[4][5] =4; board[4][9] =4;
-    board[5][0] =4; board[5][4] =4; board[5][5] =4; board[5][9] =4;
+    board[1][1] = 4; board[2][1] =4; board[3][1] = 4; board[9][1] =4; board[10][1] = 4; board[11][1] =4;
+    board[1][2] = 4; board[2][2] =4; board[3][2] = 4; board[9][2] =4; board[10][2] = 4; board[11][2] =4;
+    board[1][3] = 4; board[2][3] =4; board[3][3] = 4; board[9][3] =4; board[10][3] = 4; board[11][3] =4;
+    board[1][9] = 4; board[2][9] =4; board[3][9] = 4; board[9][9] =4; board[10][9] = 4; board[11][9] =4;
+    board[1][10] = 4; board[2][10] =4; board[3][10] = 4; board[9][10] =4; board[10][10] = 4; board[11][10] =4;
+    board[1][11] = 4; board[2][11] =4; board[3][11] = 4; board[9][11] =4; board[10][11] = 4; board[11][11] =4;
+    board[5][5] =4; board[6][5] = 4; board[7][5] =4;
+    board[5][7] =4; board[6][7] = 4; board[7][7] =4;
+    board[5][6] =4; board[6][6] = 4; board[7][6] =4;
 }
 function buildWalls2(){
-    board[1][4] = 4; board[1][5] =4;
-    board[2][3] = 4; board[2][6] =4;
-    board[3][2] = 4; board[3][7] =4;
-    //board[4][0] = 4; 
-    board[4][9] =4;
-    board[5][0] = 4; board[5][9] =4;
-    board[6][2] = 4; board[6][7] =4;
-    board[7][3] = 4; board[7][6] =4;
+    board[5][0] = 4; board[6][0] =4;board[7][0] =4;
+    board[5][2] = 4; board[6][2] =4;board[7][2] =4;
+    board[5][12] = 4; board[6][12] =4;board[7][12] =4;
+    board[5][10] = 4; board[6][10] =4;board[7][10] =4;board[4][10] =4;board[8][10] =4;
+    board[4][3] =4;board[8][3] =4;
+    board[3][4] =4;board[9][4] =4;
+    board[10][5] =4;board[2][5] =4;
+    board[10][8] =4;board[2][8] =4;
+    board[3][9] =4;board[9][9] =4;
+    board[0][6] =4;board[12][6] =4;
+    board[0][7] =4;board[12][7] =4;
+
 }
 
 function buildWalls3(){
-    board[0][1] = 4; board[0][8] =4;
-    board[1][1] = 4; board[1][8] =4;
-    board[2][4] = 4; board[2][5] =4;
-    board[7][4] = 4; board[7][5] =4;
-    board[8][1] = 4; board[9][1] =4;
-    board[8][8] = 4; board[9][9] =4;
-    board[3][1] = 4; board[3][2] =4;board[3][3] = 4; board[3][4] =4;
-    board[3][5] = 4; board[3][6] =4;board[3][7] = 4; board[3][8] =4;
-    board[6][1] = 4; board[6][2] =4;board[6][3] = 4; board[6][4] =4;
-    board[6][5] = 4; board[6][6] =4;board[6][7] = 4; board[6][8] =4;
+    board[4][1] = 4; board[7][1] =4;
+    board[4][2] = 4; board[7][2] =4;
+    board[4][3] = 4; board[7][3] =4;
+    board[4][4] = 4; board[7][4] =4;
+    board[4][5] = 4; board[7][5] =4;
+    board[4][8] = 4; board[7][8] =4;
+    board[4][9] = 4; board[7][9] =4;
+    board[4][10] = 4; board[7][10] =4;
+    board[1][6] = 4; board[2][6] =4; board[10][6] = 4; board[11][6] =4;
+    board[1][7] = 4; board[2][7] =4; board[10][7] = 4; board[11][7] =4;
+
+
 }
 
 function buildWalls4(){
@@ -376,6 +383,10 @@ function Draw() {
                 clock_img = new Image();
                 clock_img.src = 'clock.png';
                 context.drawImage(clock_img,center.x-30*10/13,center.y-30*10/13,45*10/13,45*10/13);
+            }else if (board[i][j] ==12) { // 11 is cherry
+                heart_img = new Image();
+                heart_img.src = 'heart.png';
+                context.drawImage(heart_img,center.x-30*10/13,center.y-30*10/13,45*10/13,45*10/13);
             }
         }
     }  
@@ -383,13 +394,17 @@ function Draw() {
 
 
 function UpdatePosition() {
-    board[pacman_shape.i][pacman_shape.j]=0;
-    if(draw_count % 3 == 0){
-        updateGhostsPosition();
-    }
+
+    // if(draw_count % 2 == 0){
+    //     updateGhostsPosition();
+    // }
     if (draw_count== timeToPlaySetting*0.35*2 || draw_count == timeToPlaySetting*0.75*2.5){
         var clock = findRandomEmptyCell(board);
         board[clock[0]][clock[1]] = 11;
+    }
+    if (draw_count=== timeToPlaySetting*0.66*2 || draw_count === timeToPlaySetting*0.9*2.5){
+        var heart = findRandomEmptyCell(board);
+        board[heart[0]][heart[1]] = 12;
     }
     draw_count++;
     if (cherry_remain==1 && (draw_count % 2==0)){
@@ -397,6 +412,7 @@ function UpdatePosition() {
         board[cherry_shape.i][cherry_shape.j] = 10;
     }
     var x = GetKeyPressed()
+    board[pacman_shape.i][pacman_shape.j]=0;
     if(x==1)
     {
         if(pacman_shape.j>0 && board[pacman_shape.i][pacman_shape.j-1]!=4)
@@ -454,6 +470,21 @@ function UpdatePosition() {
     }else if(board[pacman_shape.i][pacman_shape.j]==11){
         board[pacman_shape.i][pacman_shape.j]=0;
         timeToPlaySetting+=5;
+    }else if(board[pacman_shape.i][pacman_shape.j]==12){
+        board[pacman_shape.i][pacman_shape.j]=0;
+        pacman_remain++;
+    }
+    // for(var i= 0; i < 13 ; i++){
+    //     for(var j=0; j < 13; j++){
+    //         if(food_board[i][j]!=0){
+    //             board[i][j] = food_board[i][j];
+    //         }
+    //     }
+    // }
+
+    board[pacman_shape.i][pacman_shape.j]=2;
+    if(draw_count % 2 == 0){
+        updateGhostsPosition();
     }
     for(var i= 0; i < 13 ; i++){
         for(var j=0; j < 13; j++){
@@ -462,7 +493,6 @@ function UpdatePosition() {
             }
         }
     }
-    board[pacman_shape.i][pacman_shape.j]=2;
     if(num_ghost == 1){
         board[red_ghost_shape.i][red_ghost_shape.j] = 5;
     }else if(num_ghost == 2){
@@ -575,15 +605,22 @@ function ghoseCollision(board){
 function updateGhostsPosition(){
     if(num_ghost == 1){
         updateGhostPosition(red_ghost_shape);
+        board[red_ghost_shape.i][red_ghost_shape.j] = 5;
     }else if(num_ghost == 2){
         updateGhostPosition(red_ghost_shape);
+        board[red_ghost_shape.i][red_ghost_shape.j] = 5;
         updateGhostPosition(blue_ghost_shape);
+        board[blue_ghost_shape.i][blue_ghost_shape.j] = 6;
     }else if(num_ghost == 3){
         updateGhostPosition(red_ghost_shape);
+        board[red_ghost_shape.i][red_ghost_shape.j] = 5;
         updateGhostPosition(blue_ghost_shape);
+        board[blue_ghost_shape.i][blue_ghost_shape.j] = 6;
         updateGhostPosition(green_ghost_shape);
+        board[green_ghost_shape.i][green_ghost_shape.j] = 7;
     }  
 }
+
 
 function updateGhostPosition(ghost_shape){
     board[ghost_shape.i][ghost_shape.j]=0;
@@ -673,8 +710,8 @@ function tryMoveUp(ghost_shape){
 }
 
 function tryMoveDown(ghost_shape){
-    if(12>ghost_shape.j && board[ghost_shape.i][ghost_shape.j+1]!=4 && board[ghost_shape.i][ghost_shape.j-1]!=5 &&
-        board[ghost_shape.i][ghost_shape.j-1]!=6 && board[ghost_shape.i][ghost_shape.j-1]!=7){
+    if(12>ghost_shape.j && board[ghost_shape.i][ghost_shape.j+1]!=4 && board[ghost_shape.i][ghost_shape.j+1]!=5 &&
+        board[ghost_shape.i][ghost_shape.j+1]!=6 && board[ghost_shape.i][ghost_shape.j+1]!=7){
         ghost_shape.j++;
         return true;
     }
@@ -682,8 +719,8 @@ function tryMoveDown(ghost_shape){
 }
 
 function tryMoveLeft(ghost_shape){
-    if( 0<ghost_shape.i && board[ghost_shape.i-1][ghost_shape.j]!=4 && board[ghost_shape.i][ghost_shape.j-1]!=5 &&
-        board[ghost_shape.i][ghost_shape.j-1]!=6 && board[ghost_shape.i][ghost_shape.j-1]!=7){
+    if( 0<ghost_shape.i && board[ghost_shape.i-1][ghost_shape.j]!=4 && board[ghost_shape.i-1][ghost_shape.j]!=5 &&
+        board[ghost_shape.i-1][ghost_shape.j]!=6 && board[ghost_shape.i-1][ghost_shape.j]!=7){
         ghost_shape.i--;
         return true;
     }
@@ -691,8 +728,8 @@ function tryMoveLeft(ghost_shape){
 }
 
 function tryMoveRight(ghost_shape){
-    if(12>ghost_shape.i && board[ghost_shape.i+1][ghost_shape.j]!=4 && board[ghost_shape.i][ghost_shape.j-1]!=5 &&
-        board[ghost_shape.i][ghost_shape.j-1]!=6 && board[ghost_shape.i][ghost_shape.j-1]!=7){
+    if(12>ghost_shape.i && board[ghost_shape.i+1][ghost_shape.j]!=4 && board[ghost_shape.i+1][ghost_shape.j]!=5 &&
+        board[ghost_shape.i+1][ghost_shape.j]!=6 && board[ghost_shape.i+1][ghost_shape.j]!=7){
         ghost_shape.i++;
         return true;
     }

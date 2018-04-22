@@ -25,9 +25,14 @@
                 alert("enter a proper email!");
             } else {
                 dic[user_name] = password;
+                $("#user_name").val('');
+                $("#first_name").val('');
+                $("#last_name").val('');
+                $("#email").val('');
+                $("#password").val('');
+                $("#date").val('');
                 ShowSection('login_div');
-                //should transform to the login screen.
-            }
+                }
             });
         });
 
@@ -42,9 +47,14 @@
                 var user_name = $("#login_user_name").val();
                 lblUser.value = user_name;
                 var password = $("#login_password").val();
-                if (dic[user_name]!= password){
+                if (!(user_name in dic)){
+                    alert("no such user!")
+                }
+                else if(dic[user_name]!= password){
                     alert("not the right password");
                 } else {
+                    $("#login_user_name").val('');
+                    $("#login_password").val('');
                    ShowSection('instructions_div');
                 }
             });
