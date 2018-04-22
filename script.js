@@ -176,6 +176,7 @@ function buildWalls4(){
 }
 
 function setPacmen(){
+    pac_color = "yellow";
     var emptyCell = findRandomEmptyCell(board);
     pacman_shape.i=emptyCell[0];
     pacman_shape.j=emptyCell[1];
@@ -663,7 +664,8 @@ function updateGhostPosition(ghost_shape){
 }
 
 function tryMoveUp(ghost_shape){
-    if(0<ghost_shape.j && board[ghost_shape.i][ghost_shape.j-1]!=4){
+    if(0<ghost_shape.j && board[ghost_shape.i][ghost_shape.j-1]!=4 && board[ghost_shape.i][ghost_shape.j-1]!=5 &&
+        board[ghost_shape.i][ghost_shape.j-1]!=6 && board[ghost_shape.i][ghost_shape.j-1]!=7){
         ghost_shape.j--;
         return true;
     }
@@ -671,7 +673,8 @@ function tryMoveUp(ghost_shape){
 }
 
 function tryMoveDown(ghost_shape){
-    if(12>ghost_shape.j && board[ghost_shape.i][ghost_shape.j+1]!=4){
+    if(12>ghost_shape.j && board[ghost_shape.i][ghost_shape.j+1]!=4 && board[ghost_shape.i][ghost_shape.j-1]!=5 &&
+        board[ghost_shape.i][ghost_shape.j-1]!=6 && board[ghost_shape.i][ghost_shape.j-1]!=7){
         ghost_shape.j++;
         return true;
     }
@@ -679,7 +682,8 @@ function tryMoveDown(ghost_shape){
 }
 
 function tryMoveLeft(ghost_shape){
-    if( 0<ghost_shape.i && board[ghost_shape.i-1][ghost_shape.j]!=4){
+    if( 0<ghost_shape.i && board[ghost_shape.i-1][ghost_shape.j]!=4 && board[ghost_shape.i][ghost_shape.j-1]!=5 &&
+        board[ghost_shape.i][ghost_shape.j-1]!=6 && board[ghost_shape.i][ghost_shape.j-1]!=7){
         ghost_shape.i--;
         return true;
     }
@@ -687,7 +691,8 @@ function tryMoveLeft(ghost_shape){
 }
 
 function tryMoveRight(ghost_shape){
-    if(12>ghost_shape.i && board[ghost_shape.i+1][ghost_shape.j]!=4){
+    if(12>ghost_shape.i && board[ghost_shape.i+1][ghost_shape.j]!=4 && board[ghost_shape.i][ghost_shape.j-1]!=5 &&
+        board[ghost_shape.i][ghost_shape.j-1]!=6 && board[ghost_shape.i][ghost_shape.j-1]!=7){
         ghost_shape.i++;
         return true;
     }
