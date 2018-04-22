@@ -67,6 +67,7 @@ function ShowSection(id)
 
 
 function Start(ballsCounter, timeToPlay, enemyCounter) {
+    window.clearInterval(interval);
     background_music.play();
     food_setting = parseInt(ballsCounter);
     timeToPlaySetting = parseInt(timeToPlay);

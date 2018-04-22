@@ -42,6 +42,25 @@
         }
     });
 
+    $(document).ready(function() {
+        $("#btn2").click(function() {
+                $("#login_user_name").val('');
+                $("#login_password").val('');
+        });
+    });
+
+    $(document).ready(function() {
+        $("#btn3").click(function() {
+            $("#user_name").val('');
+            $("#first_name").val('');
+            $("#last_name").val('');
+            $("#email").val('');
+            $("#password").val('');
+            $("#date").val('');
+        });
+    });
+
+
         $(document).ready(function() {
             $("#login").click(function() {
                 var user_name = $("#login_user_name").val();
